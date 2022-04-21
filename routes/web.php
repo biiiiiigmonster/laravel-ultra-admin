@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -15,11 +14,12 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('hello', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+Route::redirect('/', '/dashboard/analysis');
+
+Route::get('/dashboard/analysis', function () {
+    return Inertia::render('Dashboard/Analysis');
+});
+
+Route::get('/auth/login', function () {
+    return Inertia::render('Auth/Login');
 });
